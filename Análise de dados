@@ -1,0 +1,283 @@
+Analise Estatística da Mobilidade de Bombeiros
+
+clc; clear all; close all;
+
+%% Carregamento de dados
+
+dataFF1;
+dataFF2;
+dataFF3;
+dataFF4;
+dataTruck;
+
+%% Tratamento dos dados 
+
+R = 6371*1000; % Raio da terrra em km
+  fiFF1=dadosFF1(1:end,1)*pi/180;
+  betaFF1=dadosFF1(1:end,2)*pi/180;
+  
+  fiFF2=dadosFF2(1:end,1)*pi/180;
+  betaFF2=dadosFF1(1:end,2)*pi/180;
+  
+  fiFF3=dadosFF3(1:end,1)*pi/180;
+  betaFF3=dadosFF3(1:end,2)*pi/180;
+  
+  fiFF4=dadosFF4(1:end,1)*pi/180;
+  betaFF4=dadosFF4(1:end,2)*pi/180;
+
+  fiTruck=dadosTruck(1:end,1)*pi/180;
+  betaTruck=dadosTruck(1:end,2)*pi/180;
+ 
+ %%%%%%%%%%%% Cáculo das distâncias em metros%%%%%%%%%%%%%%%%%%%%%%%%%%%
+ %Distância dos bombeiros ao caminhão
+for i = 1:length(dadosTruck)
+  
+a1(i,1) = (sin((fiTruck(i)-fiFF1(i))/2)).^2+cos(fiTruck(i)).*cos(fiFF1(i)).*(sin((betaTruck(i)-betaFF1(i))/2)).^2;
+d1 = 2*R*atan(sqrt(a1)./sqrt(1-a1)); 
+end
+
+for i = 1:length(dadosTruck)
+  
+a2(i,1) = (sin((fiTruck(i)-fiFF2(i))/2)).^2+cos(fiTruck(i)).*cos(fiFF2(i)).*(sin((betaTruck(i)-betaFF2(i))/2)).^2;
+d2 = 2*R*atan(sqrt(a2)./sqrt(1-a2)); 
+end
+for i = 1:length(dadosTruck)
+  
+a3(i,1) = (sin((fiTruck(i)-fiFF3(i))/2)).^2+cos(fiTruck(i)).*cos(fiFF3(i)).*(sin((betaTruck(i)-betaFF3(i))/2)).^2;
+d3 = 2*R*atan(sqrt(a3)./sqrt(1-a3)); 
+end
+for i = 1:length(dadosTruck)
+  
+a4(i,1) = (sin((fiTruck(i)-fiFF4(i))/2)).^2+cos(fiTruck(i)).*cos(fiFF4(i)).*(sin((betaTruck(i)-betaFF4(i))/2)).^2;
+d4 = 2*R*atan(sqrt(a4)./sqrt(1-a4)); 
+end
+
+%% Distãncia entre os bombeiros com relação ao bombeiro 1
+for i = 1:length(dadosTruck)
+  
+a12(i,1) = (sin((fiFF1(i)-fiFF2(i))/2)).^2+cos(fiFF1(i)).*cos(fiFF2(i)).*(sin((betaFF1(i)-betaFF2(i))/2)).^2;
+d12 = 2*R*atan(sqrt(a12)./sqrt(1-a12)); 
+end
+
+for i = 1:length(dadosTruck)
+  
+a13(i,1) = (sin((fiFF1(i)-fiFF3(i))/2)).^2+cos(fiFF1(i)).*cos(fiFF3(i)).*(sin((betaFF1(i)-betaFF3(i))/2)).^2;
+d13 = 2*R*atan(sqrt(a13)./sqrt(1-a13)); 
+end
+
+for i = 1:length(dadosTruck)
+  
+a14(i,1) = (sin((fiFF1(i)-fiFF4(i))/2)).^2+cos(fiFF1(i)).*cos(fiFF4(i)).*(sin((betaFF1(i)-betaFF4(i))/2)).^2;
+d14 = 2*R*atan(sqrt(a14)./sqrt(1-a14)); 
+end
+D1 = min(d12,d13);
+d111 = min(D1,d14);
+
+%% Distãncia entre os bombeiros com relação ao bombeiro 2
+for i = 1:length(dadosTruck)
+  
+a21(i,1) = (sin((fiFF2(i)-fiFF1(i))/2)).^2+cos(fiFF2(i)).*cos(fiFF1(i)).*(sin((betaFF2(i)-betaFF1(i))/2)).^2;
+d21 = 2*R*atan(sqrt(a21)./sqrt(1-a21)); 
+end
+
+for i = 1:length(dadosTruck)
+  
+a23(i,1) = (sin((fiFF2(i)-fiFF3(i))/2)).^2+cos(fiFF2(i)).*cos(fiFF3(i)).*(sin((betaFF2(i)-betaFF3(i))/2)).^2;
+d23 = 2*R*atan(sqrt(a23)./sqrt(1-a23)); 
+end
+
+for i = 1:length(dadosTruck)
+  
+a24(i,1) = (sin((fiFF2(i)-fiFF4(i))/2)).^2+cos(fiFF2(i)).*cos(fiFF4(i)).*(sin((betaFF2(i)-betaFF4(i))/2)).^2;
+d24 = 2*R*atan(sqrt(a24)./sqrt(1-a24)); 
+end
+
+D2 = min(d21,d23);
+d222 = min(D2,d24);
+
+%% Distãncia entre os bombeiros com relação ao bombeiro 3
+for i = 1:length(dadosTruck)
+  
+a31(i,1) = (sin((fiFF3(i)-fiFF1(i))/2)).^2+cos(fiFF3(i)).*cos(fiFF1(i)).*(sin((betaFF3(i)-betaFF1(i))/2)).^2;
+d31 = 2*R*atan(sqrt(a31)./sqrt(1-a31)); 
+end
+for i = 1:length(dadosTruck)
+  
+a32(i,1) = (sin((fiFF3(i)-fiFF2(i))/2)).^2+cos(fiFF3(i)).*cos(fiFF2(i)).*(sin((betaFF3(i)-betaFF2(i))/2)).^2;
+d32 = 2*R*atan(sqrt(a32)./sqrt(1-a32)); 
+end
+for i = 1:length(dadosTruck)
+a34(i,1) = (sin((fiFF3(i)-fiFF4(i))/2)).^2+cos(fiFF3(i)).*cos(fiFF4(i)).*(sin((betaFF3(i)-betaFF4(i))/2)).^2;
+d34 = 2*R*atan(sqrt(a34)./sqrt(1-a34)); 
+end
+D3 = min(d31,d32);
+d333 = min(D3,d34);
+
+%% Distãncia entre os bombeiros com relação ao bombeiro 4
+for i = 1:length(dadosTruck)
+a41(i,1) = (sin((fiFF4(i)-fiFF1(i))/2)).^2+cos(fiFF4(i)).*cos(fiFF1(i)).*(sin((betaFF4(i)-betaFF1(i))/2)).^2;
+d41 = 2*R*atan(sqrt(a41)./sqrt(1-a41)); 
+end
+for i = 1:length(dadosTruck)
+a42(i,1) = (sin((fiFF4(i)-fiFF2(i))/2)).^2+cos(fiFF4(i)).*cos(fiFF2(i)).*(sin((betaFF4(i)-betaFF2(i))/2)).^2;
+d42 = 2*R*atan(sqrt(a42)./sqrt(1-a42)); 
+end
+for i = 1:length(dadosTruck)
+a43(i,1) = (sin((fiFF4(i)-fiFF3(i))/2)).^2+cos(fiFF4(i)).*cos(fiFF3(i)).*(sin((betaFF4(i)-betaFF3(i))/2)).^2;
+d43 = 2*R*atan(sqrt(a43)./sqrt(1-a43)); 
+end
+D4 = min(d41,d42);
+d444 = min(D4,d43);
+
+ddd = [d12; d13; d14; d23; d24; d34];
+dd = [d1; d2; d3; d4];
+
+
+media1 = mean(d1);
+sigma1 = std(d1);
+
+media2 = mean(d2);
+sigma2 = std(d2);
+
+media3 = mean(d3);
+sigma3 = std(d3);
+
+media4 = mean(d4);
+sigma4 = std(d4);
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%% CDF's%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+figure
+cdfplot(d1)
+hold on
+cdfplot(d2)
+hold on
+cdfplot(d3)
+hold on
+cdfplot(d4)
+legend ('Bombeiro 1','Bombeiro 2','Bombeiro 3','Bombeiro 4', 'location' ,'southeast')
+xlabel ('Distância (m)')
+ylabel ('f(distância)')
+title ('Distância entre um bombeiro e o caminhão')
+
+figure
+cdfplot(dd)
+xlabel ('Distância (m)')
+ylabel ('f(distância)')
+title ('Distância dos bombeiros ao caminhão')
+
+
+figure
+cdfplot(ddd)
+xlabel ('Distância (m)')
+ylabel ('f(distância)')
+title ('Distância entre os bombeiros')
+
+%%%%%%%%%%%%%%%%%%%%%%%%% Histogramas dos dados  %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+figure
+hist(d1,20)
+hold on
+% plot(y,d1)
+xlabel('Distância [m]')
+ylabel('Frequência')
+title('Bombeiro 1')
+
+figure
+hist(d2,20)
+xlabel('Distância [m]')
+ylabel('Frequência')
+title('Bombeiro 2')
+
+figure
+hist(d3,20)
+title('Bombeiro 3')
+xlabel('Distância [m]')
+ylabel('Frequência')
+
+figure
+hist(d4,20)
+title('Bombeiro 4')
+xlabel('Distância [m]')
+ylabel('Frequência')
+% legend ('Bombeiro 1','Bombeiro 2','Bombeiro 3','Bombeiro 4', 'location' ,'southeast')
+
+%%%%%%%%%%%%%%%%%%%%%%%%% Testes estatísticos %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%% ztest
+%retorna uma decisão de teste para a hipótese nula de que os dados no vetor x vêm de uma distribuição normal com média me um desvio padrão sigma, usando o teste z. A hipótese alterrnativa é que a média não é m. O resultado h é 1 se o teste rejeitar a hipótese nula no nível de significância de 5% e 0 caso contrário.
+z1 = ztest(d1,media1,sigma1);
+z2 = ztest(d2,media2,sigma2);
+z3 = ztest(d3,media3,sigma3);
+z4 = ztest(d4,media4,sigma4);
+
+%% ttest
+% retorna uma decisão de teste para a hipótese nula de que os dados em x vêm de uma distribuição normal com média igual a zerro e variância desconhecida, usando o teste t de uma amostra. A hipótese alterrnativa é que a distribuição da população não possui média igual a zerro. O resultado h é 1 se o teste rejeitar a hipótese nula no nível de significância de 5% e 0 caso contrário.
+t1 = ttest(d1); 
+t2 = ttest(d2);
+t3 = ttest(d3);
+t4 = ttest(d4);
+
+%% "qqplot" testa se os dados seguem uma distribuição normal
+figure
+qqplot(d1)
+title('Bombeiro 1')
+figure(4)
+qqplot(d2)
+title('Bombeiro 2')
+figure(5)
+qqplot(d3)
+title('Bombeiro 3')
+figure(6)
+qqplot(d4)
+title('Bombeiro 4')
+
+%% "distributionFitter" aplicativo do MatLab que permite testar diversas distribuições diferentes 
+dist_fitterdd =  distributionFitter(dd);
+dist_fitterddd = distributionFitter(ddd);
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%% Correlação %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+cor1 = autocorr(d1) % Coeficiente de corerrelação entre os bombeiros 1 e 2
+cor2 = autocorr(d2) % Coeficiente de corerrelação entre os bombeiros 1 e 3
+cor3 = autocorr(d3) % Coeficiente de corerrelação entre os bombeiros 1 e 4
+cor4 = autocorr(d4) % Coeficiente de corerrelação entre os bombeiros 2 e 3
+cordd = autocorr(dd) % Coeficiente de corerrelação entre os bombeiros 2 e 4
+corddd = autocorr(ddd) % Coeficiente de corerrelação entre os bombeiros 3 e 4
+cord = corr(dd,ddd(1:length(dd))) % Coeficiente de correlação entre as distancias dos bombeiros ao caminhão e a distancia entre os bombeiros
+
+figure
+plot(cor1,'*')
+hold on
+plot(cor2,'+')
+hold on
+plot(cor3,'--','linewidth', 2)
+hold on
+plot(cor4,'linewidth', 2)
+hold on
+plot(cordd,'.-','linewidth', 2)
+hold on
+plot(corddd,'linewidth', 1.5)
+ylabel('Grau da correlaçao')
+xlabel('f(distância)')
+title('Correlação')
+legend ('Bombeiro 1','Bombeiro 2','Bombeiro 3','Bombeiro 4','Entre todos','Entre todos e o caminhão', 'location','southwest')
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
