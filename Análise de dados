@@ -173,8 +173,7 @@ xlabel ('Distância (m)')
 ylabel ('f(distância)')
 title ('Distância entre os bombeiros')
 
-![An-lise-de-dados-](distancia_entre_bombeiros.jpg)
-An-lise-de-dados-/
+
 
 %%%%%%%%%%%%%%%%%%%%%%%%% Histogramas dos dados  %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 figure
