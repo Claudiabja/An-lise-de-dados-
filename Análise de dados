@@ -174,7 +174,7 @@ ylabel ('f(distância)')
 title ('Distância entre os bombeiros')
 
 
-
+![Screenshot](distancia_entre_bombeiros.jpg)
 %%%%%%%%%%%%%%%%%%%%%%%%% Histogramas dos dados  %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 figure
 hist(d1,20)
