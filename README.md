@@ -1,0 +1,2 @@
+# Análise de dados
+O corpo de bombeiros, em vários momentos, precisa atuar em áreas distantes e/ou com cobertura de sinal  celular ruim ou ate mesmo sem cobertura. Assim sendo, um modelo estatístico que permitisse uma previsão de localização de uma equipe de bombeiros atuando, em tais locais, permitiria uma infraestrutura de comunicação para avisos ou monitoramento,  por exemplo. Portanto, pretende-se analisar alguns dados de trajetória de uma equipe de bombeiros, durante um exercício de incêndio controlado, com ferramentas estatísticas.
