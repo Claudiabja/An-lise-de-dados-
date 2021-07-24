@@ -1,0 +1,38 @@
+		DENSITY
+
+	  Bombeiros/caminhão
+
+Distribution:    Nakagami
+Log likelihood:  -445398
+Domain:          0 < y < Inf
+Mean:            328.83
+Variance:        56756.7
+
+Parameter  Estimate  Std. Err. 
+mu         0.541013  0.00247331
+omega        164886     871.392
+
+Estimated covariance of parameter estimates:
+       mu           omega      
+mu     6.11729e-06  6.32747e-07
+omega  6.32747e-07       759323
+
+
+
+	      Entre bombeiros	
+
+
+Distribution:    Nakagami
+Log likelihood:  -599049
+Domain:          0 < y < Inf
+Mean:            158.329
+Variance:        16216.7
+
+Parameter  Estimate  Std. Err. 
+mu         0.444439  0.00162909
+omega       41284.9     196.554
+
+Estimated covariance of parameter estimates:
+       mu            omega       
+mu      2.65392e-06  -4.21996e-07
+omega  -4.21996e-07       38633.3
